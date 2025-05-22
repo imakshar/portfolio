@@ -9,7 +9,6 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'Akshar Portfolio',
         short_name: 'Akshar',
@@ -36,9 +35,5 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-  },
-  build: {
-    target: 'esnext',
-    minify: 'terser'
   }
 })

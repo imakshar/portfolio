@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-16">
     <MotionFadeIn>
-      <h1 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">Projects & Contributions</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">{{ sectionTitles.projects }}</h1>
     </MotionFadeIn>
 
     <div class="space-y-12">
@@ -15,18 +15,37 @@
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ project.title }}</h2>
                 <div class="flex gap-2 ml-4">
                   <a 
-                    v-for="(link, key) in project.links" 
-                    :key="key"
-                    :href="link"
+                    v-if="project.links.github"
+                    :href="project.links.github"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 
                            dark:hover:bg-gray-600 transition-colors transform hover:scale-105"
+                    aria-label="View GitHub Repository"
                   >
-                    <Icon 
-                      :icon="key === 'github' ? 'mdi:github' : 'mdi:web'" 
-                      class="w-5 h-5 text-gray-600 dark:text-gray-300"
-                    />
+                    <Icon icon="mdi:github" class="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                  </a>
+                  <a 
+                    v-if="project.links.live"
+                    :href="project.links.live"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 
+                           dark:hover:bg-gray-600 transition-colors transform hover:scale-105"
+                    aria-label="View Live Site"
+                  >
+                    <Icon icon="mdi:web" class="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                  </a>
+                  <a 
+                    v-if="project.links.demo"
+                    :href="project.links.demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 
+                           dark:hover:bg-gray-600 transition-colors transform hover:scale-105"
+                    aria-label="View Demo"
+                  >
+                    <Icon icon="mdi:play-circle" class="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </a>
                 </div>
               </div>
@@ -51,60 +70,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { MotionFadeIn } from '../components/motion/MotionFadeIn'
-
-interface Project {
-  title: string
-  description: string
-  technologies: string[]
-  links: {
-    github?: string
-    live?: string
-  }
-}
-
-const projects: Project[] = [
-  {
-    title: 'Portfolio Website',
-    description: 'My personal portfolio website built with Vue 3, TypeScript, and Tailwind CSS.',
-    technologies: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'CSS Animations'],
-    links: {
-      github: 'https://github.com/yourusername/portfolio',
-      live: 'https://yourportfolio.com'
-    }
-  },
-  {
-    title: 'CMS User Management Portal',
-    description: 'Led the development of a comprehensive CMS user management portal using micro frontend architecture with module federation. Implemented modern UI patterns and optimized performance.',
-    technologies: ['React', 'Redux', 'Material UI', 'Vite', 'Micro Frontend', 'TypeScript'],
-    links: {
-      demo: 'https://demo-cms.example.com'
-    }
-  },
-  {
-    title: 'Network Domain Project',
-    description: 'Developed and implemented new features for a network domain project using Vue.js and micro frontend architecture, focusing on performance and scalability.',
-    technologies: ['Vue.js', 'Vite', 'Micro Frontend', 'TypeScript'],
-    links: {
-      github: 'https://github.com/imakshar/network-domain'
-    }
-  },
-  {
-    title: 'Lawmax Web App',
-    description: 'Built a full-stack video streaming and chatting application enabling peer-to-peer interaction between clients and lawyers. Implemented WebRTC for real-time communication.',
-    technologies: ['React', 'Node.js', 'WebRTC', 'Socket.io'],
-    links: {
-      github: 'https://github.com/imakshar/lawmax-web'
-    }
-  },
-  {
-    title: 'Ekaxa Learning Management System',
-    description: 'Developed a comprehensive learning management system with dedicated portals for students, teachers, and parents. Implemented real-time notifications and interactive learning features.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-    links: {
-      demo: 'https://ekaxa-lms.example.com'
-    }
-  }
-]
+import { projects, sectionTitles } from '../constants'
 </script>
 
 <style scoped>

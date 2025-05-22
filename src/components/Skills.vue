@@ -1,11 +1,11 @@
 <template>
-  <section class="py-2">
+  <section class="py-6">
     <MotionFadeIn>
-      <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">Skills & Technologies</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">{{ sectionTitles.skills }}</h2>
     </MotionFadeIn>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-      <MotionFadeIn v-for="(skill, index) in skills" :key="skill.name" :delay="index * 0.1">
+      <MotionFadeIn v-for="(skill, index) in skillsByCategory" :key="skill.name" :delay="index * 0.1">
         <div 
           class="skill-card group relative"
           :class="{ 'hover-active': hoveredSkill === skill.name }"
@@ -35,6 +35,9 @@
                   />
                 </div>
               </div>
+              <div class="mt-2 text-center">
+                <span class="text-xs text-gray-500 dark:text-gray-400">{{ skill.category }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -44,142 +47,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { MotionFadeIn } from './motion/MotionFadeIn'
-
-interface Skill {
-  name: string
-  icon: string
-  proficiency: number
-  invertInDark?: boolean
-}
+import { skills, sectionTitles } from '../constants'
+import type { Skill } from '../types/portfolio'
 
 const hoveredSkill = ref<string | null>(null)
 
-const skills = ref<Skill[]>([
-  {
-    name: 'JavaScript',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-    proficiency: 95
-  },
-  {
-    name: 'TypeScript',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-    proficiency: 90
-  },
-  {
-    name: 'React',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-    proficiency: 90
-  },
-  {
-    name: 'Vue.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
-    proficiency: 85
-  },
-  {
-    name: 'Next.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-    proficiency: 85,
-    invertInDark: true
-  },
-  {
-    name: 'Node.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-    proficiency: 85
-  },
-  {
-    name: 'Express',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-    proficiency: 80,
-    invertInDark: true
-  },
-  {
-    name: 'NestJS',
-    icon: 'https://nestjs.com/img/logo-small.svg',
-    proficiency: 75
-  },
-  {
-    name: 'GraphQL',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg',
-    proficiency: 80
-  },
-  {
-    name: 'MongoDB',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
-    proficiency: 80
-  },
-  {
-    name: 'MySQL',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-    proficiency: 75
-  },
-  {
-    name: 'Redux',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg',
-    proficiency: 85
-  },
-  {
-    name: 'MaterialUI',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg',
-    proficiency: 90
-  },
-  {
-    name: 'Ant Design',
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-    proficiency: 85
-  },
-  {
-    name: 'Tailwind',
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg',
-    proficiency: 90
-  },
-  {
-    name: 'RxJS',
-    icon: 'https://rxjs.dev/assets/images/favicons/favicon-192x192.png',
-    proficiency: 85
-  },
-  {
-    name: 'Docker',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-    proficiency: 80
-  },
-  {
-    name: 'Git',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    proficiency: 90
-  },
-  {
-    name: 'Firebase',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
-    proficiency: 75
-  },
-  {
-    name: 'Socket.io',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg',
-    proficiency: 75
-  },
-  {
-    name: 'Cypress',
-    icon: 'https://avatars.githubusercontent.com/u/8908513?s=200&v=4',
-    proficiency: 85
-  },
-  {
-    name: 'Testing Library',
-    icon: 'https://testing-library.com/img/octopus-128x128.png',
-    proficiency: 85
-  },
-  {
-    name: 'Apollo',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg',
-    proficiency: 80
-  },
-  {
-    name: 'C++',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
-    proficiency: 70
-  }
-])
+// Sort skills by category and proficiency
+const skillsByCategory = computed(() => {
+  return [...skills].sort((a, b) => {
+    if (a.category === b.category) {
+      return b.proficiency - a.proficiency
+    }
+    return (a.category || '').localeCompare(b.category || '')
+  })
+})
 
 const onHover = (skill: string) => {
   hoveredSkill.value = skill

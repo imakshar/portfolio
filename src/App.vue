@@ -91,7 +91,7 @@
       <section id="home" class="min-h-screen pt-16">
         <HomeSection />
       </section>
-      <section id="skills" class="min-h-screen py-6">
+      <section id="skills" class="min-h-screen">
         <Skills />
       </section>
       <section id="experience" class="min-h-screen py-6">

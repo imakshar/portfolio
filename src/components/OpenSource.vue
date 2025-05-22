@@ -1,11 +1,11 @@
 <template>
   <div class="space-y-16">
     <MotionFadeIn>
-      <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">Open Source Contributions</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">{{ sectionTitles.opensource }}</h2>
     </MotionFadeIn>
 
     <div class="space-y-12">
-      <MotionFadeIn v-for="(contribution, index) in contributions" :key="index" :delay="index * 0.2">
+      <MotionFadeIn v-for="(contribution, index) in openSourceContributions" :key="index" :delay="index * 0.2">
         <div class="relative pl-8 before:content-[''] before:absolute before:left-0 before:top-0 before:w-0.5 before:h-full before:bg-gradient-to-b from-primary-light to-purple-500">
           <div class="absolute left-0 top-2 w-2.5 h-2.5 rounded-full bg-primary-light -translate-x-1 ring-4 ring-primary-light/20"></div>
           <div class="relative bg-white/80 dark:bg-gray-800/80 rounded-lg backdrop-blur-sm group hover:shadow-xl hover:shadow-primary-light/10 transition-all duration-300">
@@ -20,6 +20,7 @@
                     rel="noopener noreferrer"
                     class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 
                            dark:hover:bg-gray-600 transition-colors transform hover:scale-105"
+                    aria-label="View GitHub Repository"
                   >
                     <Icon icon="mdi:github" class="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </a>
@@ -29,16 +30,16 @@
                     rel="noopener noreferrer"
                     class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 
                            dark:hover:bg-gray-600 transition-colors transform hover:scale-105"
+                    aria-label="View Pull Request"
                   >
-                    <img 
-                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
-                      alt="React logo" 
-                      class="w-5 h-5"
-                    />
+                    <Icon icon="mdi:source-pull" class="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </a>
                 </div>
               </div>
-              <p class="text-gray-700 dark:text-gray-300 mb-8">{{ contribution.description }}</p>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">{{ contribution.description }}</p>
+              <p v-if="contribution.impact" class="text-primary-dark dark:text-primary-light mb-8 italic">
+                Impact: {{ contribution.impact }}
+              </p>
               <div class="flex flex-wrap gap-3">
                 <span 
                   v-for="tech in contribution.technologies" 
@@ -59,31 +60,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { MotionFadeIn } from './motion/MotionFadeIn'
-
-interface Contribution {
-  project: string
-  description: string
-  prLink: string
-  githubLink: string
-  technologies: string[]
-}
-
-const contributions: Contribution[] = [
-  {
-    project: 'React Native Elements',
-    description: 'Fixed critical bug affecting component rendering and performance.',
-    prLink: 'https://github.com/react-native-elements/react-native-elements/pull/1234',
-    githubLink: 'https://github.com/react-native-elements/react-native-elements',
-    technologies: ['React Native', 'TypeScript', 'Jest']
-  },
-  {
-    project: 'React Native Elements',
-    description: 'Enhanced component accessibility and improved documentation.',
-    prLink: 'https://github.com/react-native-elements/react-native-elements/pull/5678',
-    githubLink: 'https://github.com/react-native-elements/react-native-elements',
-    technologies: ['React Native', 'Documentation', 'Accessibility']
-  }
-]
+import { openSourceContributions, sectionTitles } from '../constants'
 </script>
 
 <style scoped>

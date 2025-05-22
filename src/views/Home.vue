@@ -5,71 +5,40 @@
       <div class="space-y-6">
         <MotionFadeIn :delay="0.2">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight flex flex-col">
-            <span class="gradient-text mb-2">Hi, I'm Akshar</span>
-            <span class="text-3xl md:text-4xl lg:text-5xl text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap">Senior Software Engineer</span>
+            <span class="gradient-text mb-2">{{ homeContent.title }}</span>
+            <span class="text-3xl md:text-4xl lg:text-5xl text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap">{{ homeContent.subtitle }}</span>
           </h1>
           
           <div class="relative bg-white/95 dark:bg-gray-800/95 rounded-lg p-6 shadow-lg group overflow-hidden mt-8">
             <div class="absolute inset-0 bg-gradient-to-r from-primary-light via-purple-500 to-pink-500 opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
             <div class="absolute inset-0 border border-gradient-to-r from-primary-light via-purple-500 to-pink-500 opacity-30 group-hover:opacity-50 rounded-lg"></div>
             <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6 relative">
-              A passionate software engineer with a love for creating elegant solutions to complex problems. 
-              Specializing in modern web technologies and architectures, I bring 5+ years of hands-on experience in:
+              {{ homeContent.summary }}
             </p>
             <ul class="mt-4 space-y-3 relative">
-              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-200 group/item">
-                <Icon icon="mdi:check-circle" class="w-5 h-5 mt-1 text-primary-light dark:text-primary-dark group-hover/item:scale-110 transition-transform" />
-                <span>Frontend Development with React and Vue.js, building scalable and performant web applications</span>
-              </li>
-              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-200 group/item">
-                <Icon icon="mdi:check-circle" class="w-5 h-5 mt-1 text-primary-light dark:text-primary-dark group-hover/item:scale-110 transition-transform" />
-                <span>Micro Frontend Architecture & Module Federation, creating modular and maintainable applications</span>
-              </li>
-              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-200 group/item">
-                <Icon icon="mdi:check-circle" class="w-5 h-5 mt-1 text-primary-light dark:text-primary-dark group-hover/item:scale-110 transition-transform" />
-                <span>Technical Leadership & Mentorship, guiding teams to deliver high-quality solutions</span>
-              </li>
-              <li class="flex items-start gap-3 text-gray-700 dark:text-gray-200 group/item">
-                <Icon icon="mdi:check-circle" class="w-5 h-5 mt-1 text-primary-light dark:text-primary-dark group-hover/item:scale-110 transition-transform" />
-                <span>Full Stack Development with Node.js, Express, and various modern frameworks</span>
+              <li 
+                v-for="point in homeContent.bulletPoints" 
+                :key="point.text" 
+                class="flex items-start gap-3 text-gray-700 dark:text-gray-200 group/item"
+              >
+                <Icon :icon="point.icon" class="w-5 h-5 mt-1 text-primary-light dark:text-primary-dark group-hover:item:scale-110 transition-transform" />
+                <span>{{ point.text }}</span>
               </li>
             </ul>
           </div>
 
           <div class="flex flex-wrap items-center gap-3 md:gap-4 mt-8">
             <a 
-              href="https://github.com/imakshar"
+              v-for="social in contactInfo.socials"
+              :key="social.name"
+              :href="social.url"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-primary-light text-white hover:bg-primary-dark transition-colors group text-sm md:text-base"
+              :class="getSocialButtonClass(social.name)"
+              :aria-label="social.label"
             >
-              <Icon icon="mdi:github" class="w-5 h-5 transform group-hover:rotate-12 transition-transform" />
-              GitHub
-            </a>
-            <a 
-              href="https://linkedin.com/in/akshar-sarvaiya"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors group text-sm md:text-base"
-            >
-              <Icon icon="mdi:linkedin" class="w-5 h-5 transform group-hover:rotate-12 transition-transform" />
-              LinkedIn
-            </a>
-            <a 
-              href="mailto:aksharsarvaiya123@gmail.com"
-              class="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors group text-sm md:text-base"
-            >
-              <Icon icon="mdi:gmail" class="w-5 h-5 transform group-hover:rotate-12 transition-transform" />
-              Gmail
-            </a>
-            <a 
-              href="https://stackoverflow.com/users/12208858"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition-colors group text-sm md:text-base"
-            >
-              <Icon icon="mdi:stack-overflow" class="w-5 h-5 transform group-hover:rotate-12 transition-transform" />
-              Stack Overflow
+              <Icon :icon="social.icon" class="w-5 h-5 transform group-hover:rotate-12 transition-transform" />
+              {{ social.name }}
             </a>
           </div>
           
@@ -96,34 +65,17 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { MotionFadeIn } from '../components/motion/MotionFadeIn'
+import { homeContent, techStack, contactInfo } from '../constants'
 
-interface TechStack {
-  name: string
-  icon: string
-  invertInDark?: boolean
-}
-
-const techStack: TechStack[] = [
-  {
-    name: 'TypeScript',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg'
-  },
-  {
-    name: 'React',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'
-  },
-  {
-    name: 'Vue.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg'
-  },
-  {
-    name: 'Node.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg'
-  },
-  {
-    name: 'Next.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-    invertInDark: true
+// Helper function to get social button classes
+const getSocialButtonClass = (name: string) => {
+  const baseClasses = 'inline-flex items-center gap-2 px-4 py-3 rounded-lg text-white hover:bg-opacity-90 transition-colors group text-sm md:text-base'
+  const colorClasses = {
+    'GitHub': 'bg-primary-light hover:bg-primary-dark',
+    'LinkedIn': 'bg-blue-500 hover:bg-blue-600',
+    'Email': 'bg-red-500 hover:bg-red-600',
+    'Stack Overflow': 'bg-orange-500 hover:bg-orange-600'
   }
-]
+  return `${baseClasses} ${colorClasses[name as keyof typeof colorClasses]}`
+}
 </script>
