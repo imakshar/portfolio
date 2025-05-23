@@ -5,13 +5,13 @@ export const skills: Skill[] = [
     name: 'JavaScript',
     icon: 'https://api.iconify.design/logos/javascript.svg',
     proficiency: 95,
-    category: 'Frontend'
+    category: 'Frontend / Backend'
   },
   {
     name: 'TypeScript',
     icon: 'https://api.iconify.design/logos/typescript-icon.svg',
     proficiency: 95,
-    category: 'Frontend'
+    category: 'Frontend / Backend'
   },
   {
     name: 'React',
@@ -124,5 +124,48 @@ export const skills: Skill[] = [
     proficiency: 75,
     category: 'DevOps',
     invertInDark: true
+  },
+  {
+    name: 'Python',
+    icon: 'https://api.iconify.design/logos/python.svg',
+    proficiency: 75,
+    category: 'Backend'
+  },
+  {
+    name: 'Linux',
+    icon: 'https://api.iconify.design/logos/linux-tux.svg',
+    proficiency: 80,
+    category: 'DevOps'
+  },
+  {
+    name: 'AWS',
+    icon: 'https://api.iconify.design/logos/aws.svg',
+    proficiency: 75,
+    category: 'DevOps'
+  },
+  {
+    name: 'GitHub',
+    icon: 'https://api.iconify.design/logos/github-icon.svg',
+    proficiency: 90,
+    category: 'DevOps',
+    invertInDark: true
+  },
+  {
+    name: 'Jenkins',
+    icon: 'https://api.iconify.design/logos/jenkins.svg',
+    proficiency: 75,
+    category: 'DevOps'
+  },
+  {
+    name: 'PostgreSQL',
+    icon: 'https://api.iconify.design/logos/postgresql.svg',
+    proficiency: 70,
+    category: 'Database'
+  },
+  {
+    name: 'Nginx',
+    icon: 'https://api.iconify.design/logos/nginx.svg',
+    proficiency: 75,
+    category: 'DevOps'
   }
 ]
