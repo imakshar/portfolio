@@ -40,7 +40,7 @@ export const projects: Project[] = [
     technologies: ["Vue 3", "TypeScript", "Tailwind CSS", "CSS Animations"],
     links: {
       github: "https://github.com/imakshar/portfolio",
-      live: "https://yourportfolio.com",
+      live: "https://my-portfolio-imakshars-projects.vercel.app/",
     },
     featured: true,
   },
