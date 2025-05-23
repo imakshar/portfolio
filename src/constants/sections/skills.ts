@@ -10,69 +10,69 @@ export const skills: Skill[] = [
   {
     name: 'TypeScript',
     icon: 'https://api.iconify.design/logos/typescript-icon.svg',
-    proficiency: 90,
+    proficiency: 95,
     category: 'Frontend'
   },
   {
     name: 'React',
     icon: 'https://api.iconify.design/logos/react.svg',
-    proficiency: 90,
+    proficiency: 95,
     category: 'Frontend'
   },
   {
     name: 'Vue.js',
     icon: 'https://api.iconify.design/logos/vue.svg',
-    proficiency: 85,
+    proficiency: 95,
     category: 'Frontend'
   },
   {
     name: 'Next.js',
     icon: 'https://api.iconify.design/logos/nextjs-icon.svg',
-    proficiency: 85,
+    proficiency: 80,
     category: 'Frontend',
     invertInDark: true
   },
   {
     name: 'Node.js',
     icon: 'https://api.iconify.design/logos/nodejs-icon.svg',
-    proficiency: 85,
+    proficiency: 70,
     category: 'Backend'
   },
   {
     name: 'Express',
     icon: 'https://api.iconify.design/simple-icons/express.svg',
-    proficiency: 80,
+    proficiency: 70,
     category: 'Backend',
     invertInDark: true
   },
   {
     name: 'NestJS',
     icon: 'https://api.iconify.design/logos/nestjs.svg',
-    proficiency: 75,
+    proficiency: 60,
     category: 'Backend'
   },
   {
     name: 'GraphQL',
     icon: 'https://api.iconify.design/logos/graphql.svg',
-    proficiency: 80,
+    proficiency: 60,
     category: 'Backend'
   },
   {
     name: 'MongoDB',
     icon: 'https://api.iconify.design/logos/mongodb-icon.svg',
-    proficiency: 80,
+    proficiency: 60,
     category: 'Database'
   },
   {
     name: 'MySQL',
     icon: 'https://api.iconify.design/logos/mysql-icon.svg',
-    proficiency: 75,
+    proficiency: 60,
     category: 'Database'
   },
   {
     name: 'Redux',
     icon: 'https://api.iconify.design/logos/redux.svg',
-    proficiency: 85,
+    proficiency: 95,
     category: 'Frontend'
   },
   {
@@ -102,19 +102,19 @@ export const skills: Skill[] = [
   {
     name: 'Docker',
     icon: 'https://api.iconify.design/logos/docker-icon.svg',
-    proficiency: 80,
+    proficiency: 70,
     category: 'DevOps'
   },
   {
     name: 'Git',
     icon: 'https://api.iconify.design/logos/git-icon.svg',
-    proficiency: 90,
+    proficiency: 95,
     category: 'DevOps'
   },
   {
     name: 'Datadog',
     icon: 'https://api.iconify.design/simple-icons/datadog.svg',
-    proficiency: 80,
+    proficiency: 70,
     category: 'DevOps',
     invertInDark: true
   },
