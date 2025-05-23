@@ -1,10 +1,10 @@
 <template>
-  <div class="space-y-16">
+  <div class="space-y-8">
     <MotionFadeIn>
-      <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">{{ sectionTitles.opensource }}</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">{{ sectionTitles.opensource }}</h2>
     </MotionFadeIn>
 
-    <div class="space-y-12">
+    <div class="space-y-8">
       <MotionFadeIn v-for="(contribution, index) in openSourceContributions" :key="index" :delay="index * 0.2">
         <div class="relative pl-8 before:content-[''] before:absolute before:left-0 before:top-0 before:w-0.5 before:h-full before:bg-gradient-to-b from-primary-light to-purple-500">
           <div class="absolute left-0 top-2 w-2.5 h-2.5 rounded-full bg-primary-light -translate-x-1 ring-4 ring-primary-light/20"></div>

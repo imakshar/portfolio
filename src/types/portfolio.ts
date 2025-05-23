@@ -13,13 +13,13 @@ export interface ContactInfo {
   socials: SocialLink[];
 }
 
-// Home Section Types
+// Summary Section Types
 export interface BulletPoint {
   text: string;
   icon: string;
 }
 
-export interface HomeSection {
+export interface SummarySection {
   name: string;
   title: string;
   subtitle: string;
@@ -38,7 +38,7 @@ export interface TechStackItem {
 export interface Skill {
   name: string;
   icon: string;
-  proficiency: number;
+  proficiency?: number;
   invertInDark?: boolean;
   category?: string;
 }

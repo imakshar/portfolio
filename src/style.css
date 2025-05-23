@@ -29,6 +29,7 @@
 
   section {
     position: relative;
+    padding: 2rem 0;
   }
 
   section::before {
@@ -40,6 +41,11 @@
 
   .dark section::before {
     background: linear-gradient(180deg, transparent, var(--primary-dark) / 0.1, transparent);
+  }
+
+  /* Add spacing between sections */
+  section + section {
+    margin-top: 2rem;
   }
 }
 

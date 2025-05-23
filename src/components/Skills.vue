@@ -1,7 +1,7 @@
 <template>
-  <section class="py-6">
+  <section class="py-4">
     <MotionFadeIn>
-      <h2 class="text-4xl md:text-5xl font-bold mb-16 gradient-text">{{ sectionTitles.skills }}</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">{{ sectionTitles.skills }}</h2>
     </MotionFadeIn>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -56,12 +56,7 @@ const hoveredSkill = ref<string | null>(null)
 
 // Sort skills by category and proficiency
 const skillsByCategory = computed(() => {
-  return [...skills].sort((a, b) => {
-    if (a.category === b.category) {
-      return b.proficiency - a.proficiency
-    }
-    return (a.category || '').localeCompare(b.category || '')
-  })
+  return [...skills].sort((a, b) => b.proficiency - a.proficiency)
 })
 
 const onHover = (skill: string) => {

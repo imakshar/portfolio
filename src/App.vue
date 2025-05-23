@@ -8,9 +8,9 @@
     >
       <div class="container mx-auto px-4 py-4 flex flex-wrap md:flex-nowrap justify-between items-center">
         <a 
-          href="#home" 
+          href="#summary" 
           class="font-mono text-xl font-bold gradient-text"
-          aria-label="Home"
+          aria-label="Summary"
         >
           Akshar Sarvaiya
         </a>
@@ -88,19 +88,19 @@
       </div>
     </nav>
     <main class="container mx-auto px-4">
-      <section id="home" class="min-h-screen pt-16">
-        <HomeSection />
+      <section id="summary" class="pt-16">
+        <SummarySection />
       </section>
-      <section id="skills" class="min-h-screen">
+      <section id="skills" class="pt-4">
         <Skills />
       </section>
-      <section id="experience" class="min-h-screen py-6">
+      <section id="experience">
         <ExperienceSection />
       </section>
-      <section id="projects" class="min-h-screen py-6">
+      <section id="projects">
         <ProjectsSection />
       </section>
-      <section id="opensource" class="min-h-screen py-6">
+      <section id="opensource">
         <OpenSourceSection />
       </section>
     </main>
@@ -131,7 +131,7 @@
 import { ref, onMounted } from 'vue'
 import { useTheme } from './composables/useTheme'
 import ProgressBar from './components/ProgressBar.vue'
-import HomeSection from './views/Home.vue'
+import SummarySection from './views/Summary.vue'
 import ExperienceSection from './views/Experience.vue'
 import ProjectsSection from './views/Projects.vue'
 import OpenSourceSection from './components/OpenSource.vue'
@@ -142,7 +142,7 @@ const { isDark, toggleTheme, initTheme } = useTheme()
 const isMobileMenuOpen = ref(false)
 
 const navigationItems = [
-  { name: 'Home', id: 'home' },
+  { name: 'Summary', id: 'summary' },
   { name: 'Skills', id: 'skills' },
   { name: 'Experience', id: 'experience' },
   { name: 'Projects', id: 'projects' },

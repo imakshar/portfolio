@@ -1,8 +1,8 @@
 // Contact Information
 export { contactInfo } from './contact'
 
-// Home Section
-export { homeContent, techStack } from './home'
+// Summary Section
+export { summaryContent, techStack } from './summary'
 
 // Section Constants
 export { skills } from './sections/skills'
@@ -12,7 +12,7 @@ export { openSourceContributions } from './sections/opensource'
 
 // Configuration Constants
 export const sectionIds = {
-  home: 'home',
+  summary: 'summary',
   skills: 'skills',
   experience: 'experience',
   projects: 'projects',
@@ -20,7 +20,7 @@ export const sectionIds = {
 } as const
 
 export const sectionTitles = {
-  home: "Hi, I'm Akshar",
+  summary: "Hi, I'm Akshar",
   skills: 'Skills & Technologies',
   experience: 'Work Experience',
   projects: 'Projects & Contributions',

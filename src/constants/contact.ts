@@ -13,9 +13,15 @@ export const contactInfo: ContactInfo = {
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/akshar-sarvaiya',
+      url: 'https://www.linkedin.com/in/iamakshar/',
       icon: 'mdi:linkedin',
       label: 'Connect on LinkedIn'
+    },
+    {
+        name: 'Email',
+        url: 'mailto:aksharsarvaiya123@gmail.com',
+        icon: 'mdi:gmail',
+        label: 'Send an Email'
     },
     {
       name: 'Stack Overflow',
@@ -23,11 +29,6 @@ export const contactInfo: ContactInfo = {
       icon: 'mdi:stack-overflow',
       label: 'View Stack Overflow Profile'
     },
-    {
-      name: 'Email',
-      url: 'mailto:aksharsarvaiya123@gmail.com',
-      icon: 'mdi:gmail',
-      label: 'Send an Email'
-    }
+    
   ]
 }
